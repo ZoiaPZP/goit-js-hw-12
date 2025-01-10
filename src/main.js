@@ -48,7 +48,7 @@ async function submit(evt) {
   clearGallery();
   showLoadingSpinner();
 
-  // Показуємо повідомлення про завантаження
+  
   Notiflix.Notify.info("Loading images, please wait.");
 
   try {
@@ -78,7 +78,7 @@ async function onClickBtn() {
   const text = elem.input.value.trim();
   showLoadingSpinner();
 
-  // Показуємо повідомлення про завантаження
+  
   Notiflix.Notify.info("Loading more images, please wait.");
 
   try {
@@ -100,7 +100,6 @@ async function onClickBtn() {
 
 if (elem?.form) elem.form.addEventListener("submit", submit);
 if (elem?.loadMoreBtn) elem.loadMoreBtn.addEventListener("click", onClickBtn);
-
 
 
 
