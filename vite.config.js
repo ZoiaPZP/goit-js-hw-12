@@ -37,6 +37,19 @@ export default defineConfig(({ command }) => {
       outDir: '../dist',
       emptyOutDir: true,
     },
+    server: {
+      headers: {
+        'Content-Security-Policy': `
+    default-src 'self'; 
+    style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; 
+    style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net; 
+    script-src 'self' https://cdn.jsdelivr.net; 
+    script-src-elem 'self' https://cdn.jsdelivr.net; 
+    connect-src 'self' https://pixabay.com; 
+    img-src 'self' https://pixabay.com data:; 
+        `,
+      },
+    },
     plugins: [
       injectHTML(),
       FullReload(['./src/**/**.html']),
@@ -46,3 +59,15 @@ export default defineConfig(({ command }) => {
     ],
   };
 });
+
+
+
+
+
+
+
+
+
+
+
+
