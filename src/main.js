@@ -109,6 +109,7 @@ async function onClickBtn() {
   }
 }
 
+
 if (elem?.form) elem.form.addEventListener("submit", submit);
 if (elem?.loadMoreBtn) elem.loadMoreBtn.addEventListener("click", onClickBtn);
 
