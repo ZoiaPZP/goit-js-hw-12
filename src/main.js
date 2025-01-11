@@ -10,7 +10,7 @@ import { service } from "./js/pixabay-api.js";
 import { elem, renderMarkup, clearGallery } from "./js/render-functions.js";
 
 let page = 1;
-const perPage = 40;
+const perPage = 15;
 
 const loadingIndicator = document.getElementById("loading-indicator");
 const showLoadingSpinner = () => (loadingIndicator.style.display = "block");
@@ -91,6 +91,17 @@ async function onClickBtn() {
 
     renderMarkup(galleryItems.data.hits);
     lightbox.refresh();
+
+      
+    const { height: cardHeight } = document
+      .querySelector(".gallery")
+      .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * 2, 
+      behavior: "smooth", 
+    });
+
   } catch (error) {
     Notiflix.Notify.failure("An error occurred while loading more images.");
   } finally {

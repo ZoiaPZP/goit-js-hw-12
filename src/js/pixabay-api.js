@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function service(query, page = 1, perPage = 40) {
+export async function service(query, page = 1, perPage = 15) {
   const BASE_URL = 'https://pixabay.com/api/';
   const API_KEY = '48018775-66f870a0a55ddc658d7ca6c06';
   const params = new URLSearchParams({
