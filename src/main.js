@@ -54,12 +54,15 @@ async function submit(evt) {
   try {
     const galleryItems = await service(text, page, perPage);
     if (!galleryItems?.data?.hits?.length) {
+      hideLoadMoreBtn(); 
       iziToast.error({ title: "Error", message: "No images found." });
       return;
     }
 
     const totalHits = galleryItems.data.totalHits;
-    totalHits > perPage ? showLoadMoreBtn() : hideLoadMoreBtn();
+    const totalPages = Math.ceil(totalHits / perPage); 
+
+    totalPages > page ? showLoadMoreBtn() : hideLoadMoreBtn(); 
 
     Notiflix.Notify.success(`Success! Found ${totalHits} images.`);
 renderMarkup(galleryItems.data.hits);
@@ -67,6 +70,7 @@ lightbox.refresh();
 
 
   } catch (error) {
+    hideLoadMoreBtn(); 
     Notiflix.Notify.failure("An error occurred. Please try again.");
   } finally {
     hideLoadingSpinner();
@@ -92,6 +96,14 @@ async function onClickBtn() {
     renderMarkup(galleryItems.data.hits);
     lightbox.refresh();
 
+
+    const totalHits = galleryItems.data.totalHits;
+    const totalPages = Math.ceil(totalHits / perPage); 
+
+    if (page >= totalPages) {
+      hideLoadMoreBtn(); 
+    }
+
       
     const { height: cardHeight } = document
       .querySelector(".gallery")
@@ -103,6 +115,7 @@ async function onClickBtn() {
     });
 
   } catch (error) {
+    hideLoadMoreBtn(); 
     Notiflix.Notify.failure("An error occurred while loading more images.");
   } finally {
     hideLoadingSpinner();
