@@ -111,3 +111,15 @@
     transform: rotate(360deg);
   }
 }
+/* Where the images come from (Pixabay API terms). */
+.site-footer {
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.site-footer a {
+  display: inline;
+  color: #710505;
+}
